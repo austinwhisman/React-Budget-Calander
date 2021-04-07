@@ -1,0 +1,118 @@
+import '../App.css';
+import ExpenseModal from './FormModal/FormModal.js'
+import ExpenseList from './ListComponent/ExpenseList.js'
+import TotalComponent from './ListComponent/TotalCounter.js'
+import React, {useEffect, useState} from 'react'
+
+function Expense() {
+  const [darkTheme, setDarkTheme] = React.useState(false)
+  const [enteredExpense, setExpense] = useState([]);
+  const [show, setShow] = useState(false);
+  const [totalExpense, setTotalExpense] = useState(0);
+  
+  console.log(totalExpense)
+  //Fetch Data Stored on Firebase Db. gets resonse. turns to JSON, maps to
+  useEffect(() => {
+    fetch('https://alwbudgetcalculator-default-rtdb.firebaseio.com/expenses.json')
+    .then(response => response.json())
+    .then(responseData => {
+      const loadedData = [];
+      var total = 0;
+      for (const key in responseData) {
+        loadedData.push({
+          id: key,
+          title: responseData[key].title,
+          expense: responseData[key].expense,
+          type: responseData[key].type
+        })
+        total = insertDecimal(
+          (Number(total) + Number(responseData[key].expense * responseData[key].type )
+        ))
+      }
+      setTotalExpense(total);
+      setExpense(loadedData);
+    })
+    return function cleanup() {
+        setTotalExpense('');
+        setTotalExpense(parseFloat(totalExpense))
+    }
+  }, [])
+
+  //Sets state to open and close Expense Modal
+  const modalHandler = () => { 
+    const showvalue = !show;
+    setShow(showvalue);
+  }
+
+  const totalHandler = (expense) => {
+    const totalAccumulator = Number(totalExpense) + Number(expense)
+    setTotalExpense(totalAccumulator);
+    return(
+      <p>{totalAccumulator}</p>
+    )
+  }
+
+  const insertDecimal = integer => Number(Math.round(Number(integer) * 100) / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  //adds new expenses to Firebase Db and pushes setExpense.
+  const addExpense = (title, expense, type) => { 
+    fetch('https://alwbudgetcalculator-default-rtdb.firebaseio.com/expenses.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: title,
+        expense: expense,
+        type: type
+      }),
+      headers: { 'Content-Type': 'application/json'}
+    }).then(response => {
+      return response.json();
+    }).then(responseData => {
+      setExpense(arr => [...arr, {
+        id: responseData.name,
+        title: title,
+        expense: expense,
+        type: type
+      }])
+      modalHandler()
+      console.log(insertDecimal(type), expense, Number(type)* expense))
+      console.log(totalHandler(insertDecimal(type) * expense))
+    })
+  }
+  
+  const removeExpenseHandler = (expenseId, expenseCost, expenseType) => {
+    fetch(
+      `https://alwbudgetcalculator-default-rtdb.firebaseio.com/expenses/${expenseId}.json`,
+      {
+        method: 'DELETE'
+      }
+    ).then(response => {
+        setExpense(prevExpense =>
+          prevExpense.filter(expense => expense.id !== expenseId)
+      );
+        const totalAccumulator = totalExpense - (expenseCost * expenseType)
+        setTotalExpense(totalAccumulator)
+    })
+  };
+
+  return (
+    <div id="parent-container" className={darkTheme ? 'light-theme' : 'dark-theme'}>
+      <ExpenseModal 
+        showvalue={show} 
+        onModalHandler={modalHandler}
+        onAddExpense={addExpense}
+        onInsertDecimal={insertDecimal}
+      />
+      <ExpenseList 
+        expenselist={enteredExpense}
+        onRemoveItem={removeExpenseHandler} 
+      />
+      <TotalComponent expenselist={totalExpense} />
+      <button onClick={() => setDarkTheme(prevTheme => !prevTheme)}>
+        Toggle with me
+      </button>
+    </div>  
+    
+  );
+}
+
+export default Expense;
