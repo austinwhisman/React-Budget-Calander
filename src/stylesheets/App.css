@@ -1,0 +1,45 @@
+html {
+  background-color: #0cbaba;
+  background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  background-color: #0cbaba;
+  background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+}
+
+nav {
+  display: flex;
+  text-align: center;
+  background-color: #503d81;
+  width: 100%;
+  padding: 20px;
+  color: #f8f8f8;
+}
+
+.content {
+  padding: 0.5em;
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  height: 90vh;
+}
+
+.dark-theme, .dark-theme > .moda-content {
+  background-color: #1f1b24;
+  color: #f8f8f8;
+}
+
+.dark-theme nav {
+  background-color: #332940;
+}
+
+.dark-theme code {
+  color: red;
+}

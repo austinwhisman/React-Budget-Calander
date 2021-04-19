@@ -1,0 +1,93 @@
+.expense-wrapper {
+    display: inline-block;
+    padding: 10px 15px;
+}
+
+.expense-column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.expense-wrapper-body {
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0px 7px 21px #141414;
+}
+
+.expense-header {
+    position: relative;
+    text-align: right;
+    background: #1f1e1e;
+    border-radius: 7px 7px 0px 0px;
+}
+
+.expense-remove-button {
+    background:#df1a1a;
+    border: transparent;
+    color: white;
+    border-radius: 0px;
+}
+
+.expense-remove-button:hover {
+    background-color: #830f0f;
+}
+.expense-content-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px 10px 0px;
+    position: relative;
+    color: #fffec1;
+}
+
+.expense-content-title {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.expense-content-cost-wrapper {
+    display: inline-block;
+    height: 100%;
+    font-size: 20px;
+    position: relative;
+}
+
+.expense-content-cost-label {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 12px;
+    position: absolute;
+    top: -3px;
+    left: 7px;
+    color: #161616;
+    font-weight: 700;
+}
+
+.expense-content-cost-number {
+    display: inline-block;
+    margin-left: 12px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 550px) {
+
+    .expense-column {
+        justify-content: start;
+    }
+
+}
+
+@media screen and (max-width: 549px) {
+
+    .expense-wrapper {
+        width: 100%;
+    }
+
+    .expense-column {
+        justify-content: center;
+    }
+
+}
