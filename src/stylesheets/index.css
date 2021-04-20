@@ -3,6 +3,14 @@ html {
   height: 100%;
 }
 
+html, body, #root, .App {
+  height: 100%;
+}
+
+#router-wrapper {
+  height: 100%;
+}
+
 #root {
   position: relative;
   top: 0px;

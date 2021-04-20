@@ -4,7 +4,7 @@ import UserProvider from "./Providers/UserProvider";
 
 function App() {
   return (
-    <UserProvider>
+    <UserProvider style={{height: "100%"}}>
       <Application />
     </UserProvider>
   );

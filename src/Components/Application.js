@@ -11,7 +11,7 @@ function Application() {
   const user = useContext(UserContext);
   return (
     user ?
-    <Router>
+    <Router id="router-wrapper">
     <Expense path="/" />
     <ProfilePage path="profilePage"/>
     </Router>

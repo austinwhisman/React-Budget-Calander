@@ -28,12 +28,17 @@ nav {
   max-width: 600px;
   font-size: 1.2rem;
   line-height: 1.1;
-  height: 90vh;
+  height: 100%;
+}
+
+#gatsby-focus-wrapper {
+  height: 100%;
 }
 
 .dark-theme, .dark-theme > .moda-content {
   background-color: #1f1b24;
   color: #f8f8f8;
+  height: 100%;
 }
 
 .dark-theme nav {

@@ -28,6 +28,14 @@
     border-radius: 0px;
 }
 
+.edit-expense-button {
+    background: blue;
+}
+
+.edit-expense-button:hover {
+    background: #140f56;
+}
+
 .expense-remove-button:hover {
     background-color: #830f0f;
 }

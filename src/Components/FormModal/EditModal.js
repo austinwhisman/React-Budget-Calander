@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import '../../stylesheets/expenseStyles.css'
 import Button from 'react-bootstrap/Button'
 
 
@@ -100,7 +101,7 @@ const EditModal = props => {
                 </Modal.Body>
             </Modal>
 
-            <button style={{background: "blue"}} onClick={() => {
+            <button className="edit-expense-button" onClick={() => {
                     modalHandler(); 
                 }}>
                 Edit

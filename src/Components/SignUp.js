@@ -9,6 +9,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
 
   const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
@@ -18,6 +19,7 @@ const SignUp = () => {
     }
     catch(error){
       setError('Error Signing up with email and password');
+      setShow(true);
     }
       
     setEmail("");
@@ -39,6 +41,7 @@ const SignUp = () => {
 
   return (
     <Form className="formStyle">
+      <>{show ? <div style={{background: '#980e0e', borderRadius: '8px', textAlign: 'center'}}>{error}</div> : null} </>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Full Name</Form.Label>
         <Form.Control

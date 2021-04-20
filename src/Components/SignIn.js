@@ -11,12 +11,13 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
 
   const signInWithEmailAndPasswordHandler = (event,email, password) => {
     event.preventDefault();
     auth.signInWithEmailAndPassword(email, password).catch(error => {
+      setShow(true)
       setError("Error signing in with password and email!");
-      console.error("Error signing in with password and email", error);
     });
   };
     
@@ -30,9 +31,10 @@ const SignIn = () => {
         setPassword(value);
       }
     };
- 
   return (
+     
     <Form className="formStyle">
+      <>{show ? <div style={{background: '#980e0e', borderRadius: '8px', textAlign: 'center'}}>{error}</div> : null} </>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control 
