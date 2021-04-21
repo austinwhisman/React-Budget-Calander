@@ -169,8 +169,8 @@ function Expense() {
         onAddExpense={addExpenseHandler}
         insertDecimal= {insertDecimal}
       />
-      <div> 
-        <button onClick = {() => {auth.signOut()}}>
+      <div style={{textAlign: "center"}}> 
+        <button className="signout-button" onClick = {() => {auth.signOut()}}>
           Sign out
         </button>
       </div>

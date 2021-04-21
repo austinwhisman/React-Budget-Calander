@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import '../../stylesheets/expenseStyles.css'
 import Button from 'react-bootstrap/Button'
-
+import "../../stylesheets/expenseform.css"
 
 const EditModal = props => {
     const [title, setTitle] = useState('');

@@ -1,3 +1,7 @@
+#parent-container {
+    overflow: scroll;
+}
+
 .expense-wrapper {
     display: inline-block;
     padding: 10px 15px;
@@ -30,6 +34,7 @@
 
 .edit-expense-button {
     background: blue;
+    border-radius: 0px;
 }
 
 .edit-expense-button:hover {
